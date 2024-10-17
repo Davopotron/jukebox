@@ -28,20 +28,20 @@ router.get("/", async (req, res, next) => {
     }
   });
 
-  router.post("/:id/playlists", async (req, res, next) => {
-    const { id } = req.params;
-    const { name, description, ownerId } = req.body;
+  router.post('/:id/playlists', async (req, res, next) => {
+    const {id} = req.params;
+    const {name, description} = req.body;
     try {
-      // partySize and restaurantId have been converted to numbers
-      const playlist = await prisma.playlist.create({
-        data: { 
-            name,
-            description, 
-            ownerId: +ownerId, 
-            userId: +id },
-      });
-      res.status(201).json(reservation);
+    // partySize and restaurantId have been converted to numbers
+    const playlist = await prisma.playlist.create({
+    data: {
+    name,
+    description,
+    ownerId: +id,
+    },
+    });
+    res.status(201).json(playlist);
     } catch (e) {
-      next(e);
+    next(e);
     }
-  });
+    });
